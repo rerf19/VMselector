@@ -1,8 +1,8 @@
 const express = require('express');
 const route = express.Router();
 
-route.get('/', (req, res) => {
-    res.render("index.ejs");
-});
+const services = require('../services/render')
+
+route.get('/', services.homeRoute);
 
 module.exports = route;
