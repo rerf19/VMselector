@@ -1,0 +1,11 @@
+nav{
+    background-color: var(--color2);
+}
+
+.navbar-brand{
+    color: var(--color-2);
+}
+
+.nav-link{
+    color: var(--color-2);
+}
