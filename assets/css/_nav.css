@@ -2,6 +2,10 @@ nav{
     background-color: var(--color2);
 }
 
+.offcanvas{
+    background-color: var(--color2);
+}
+
 .navbar-brand{
     color: var(--color-2);
 }
@@ -9,3 +13,25 @@ nav{
 .nav-link{
     color: var(--color-2);
 }
+
+.navbar-brand:hover{
+    color: var(--color1);
+}
+
+.nav-link:hover{
+    color: var(--color1);
+}
+
+.dropdown-menu {
+    background-color: var(--color2);
+    color: var(--color-2);
+}
+
+.dropdown-item{
+    color: var(--color-2);
+}
+
+.dropdown-item:hover{
+    color: var(--color2);
+}
+
