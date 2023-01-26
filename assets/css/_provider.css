@@ -1,0 +1,10 @@
+.container-fluid{
+    width: 90vw;
+}
+
+#forml,#list{
+    background-color: var(--color);
+    border-radius: 60px;
+}
+
+
