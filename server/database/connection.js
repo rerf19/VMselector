@@ -3,10 +3,11 @@ const mongoose = require('mongoose');
 const connectDB = async() => {
     try{
         //mongoDB conn string
-        console.log(1)
+        mongoose.set('strictQuery', false); //to not show up the warming message
         const conn = await mongoose.connect(process.env.MongoDB_con);
+
         
-        console.log(`MongoDB connected: ${con.connection.host}`)
+        console.log(`MongoDB connected: ${conn.connection.host}`);
         
     }catch (err){
         console.log(err);

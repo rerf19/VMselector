@@ -1,0 +1,56 @@
+.container-fluid{
+    border: 1px red solid;
+}
+
+/* Top of the Page / Title / Slogan */
+#top{
+    font-size: large;
+    height: 80vh;
+    font-family: 'Alfa Slab One', cursive;
+    width: 100vw;
+    margin: 0;
+}
+
+#top h1{ /* h1 within the #top*/
+    font-size: 90px;
+    border: 1px red solid;
+    text-align: left;
+    color: var(--color3);
+    margin-left: 6vw;
+}
+
+#top h4{
+    vertical-align: center;
+    color: var(--color3);
+    width: 100px;
+}
+
+/* ---------------------------------- */
+
+/*Providers / Cloud Providers / Card Items*/
+
+#providers{
+    background-color: var(--color);
+    border-radius: 60px;
+    width: 90vw;
+}
+
+#providers-title {
+    color: var(--color3);
+}
+
+#providers-title h1{
+    margin-top: 10px;
+    margin-bottom: 30px;
+    font-size: 50px;
+}
+
+#cards-col{
+    display: flex;
+    justify-content: center;
+}
+
+.card-title{
+    text-align: center;
+}
+
