@@ -4,8 +4,6 @@ var schema = new mongoose.Schema({
     
 })
 
-
-
-const azIdb = mongoose.model('azure_instances',schema);
+const azIdb = mongoose.model('az_instances',schema);
 
 module.exports = azIdb;

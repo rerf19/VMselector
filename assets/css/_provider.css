@@ -5,6 +5,7 @@
 #forml,#list{
     background-color: var(--color);
     border-radius: 60px;
+    padding-bottom: 100px;
 }
 
 

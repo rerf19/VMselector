@@ -22,7 +22,30 @@
             <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
+            <form action="post" class="row g-3">
+                <div class="col-3">
+                    <label for="region" class="form-label">Region</label>
+                    <select id="region" class="form-select">
+                        <% for(var i = 0; i < azR.length; i++) { %>
+                            <option value="<%= azR[i].name %>"><%= azR[i].displayName %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="software" class="form-label">Software</label>
+                    <select id="software" class="form-select"></select>
+                </select>
+                </div>
+                <div class="col-3">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" class="form-select"></select>
+                </div>
             
+                <div class="col-3">
+                    <label for="VMseries" class="form-label">VM series</label>
+                    <select id="VMseries" class="form-select"></select>
+                </div>
+            </form>
         </div>
         <div id="list" class="row" style="margin-top: 40px;">
             <div class="col-1"></div>

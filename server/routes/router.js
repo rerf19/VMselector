@@ -9,6 +9,6 @@ route.get('/', services.homeRoute);
 route.get('/azure', services.azure);
 
 //API
-route.get('/api/azIdb',controller.find);
+route.get('/api/az',controller.find);
 
 module.exports = route;
