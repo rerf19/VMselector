@@ -10,7 +10,7 @@ exports.azure = (req,res) => {
     .then(function(response){
         res.render('azure',{
             azR: response.data.regions,
-            azI: response.data.intances
+            azI: response.data.instances,
         });
     })
     .catch(err => {

@@ -27,7 +27,7 @@
                     <label for="region" class="form-label">Region</label>
                     <select id="region" class="form-select">
                         <% for(var i = 0; i < azR.length; i++) { %>
-                            <option value="<%= azR[i].name %>"><%= azR[i].displayName %></option>
+                            <option value="<%= azR[i].displayName %>"><%= azR[i].displayName %></option>
                         <% } %>
                     </select>
                 </div>
@@ -55,6 +55,38 @@
             <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Family</th>
+                        <th>Size</th>
+                        <th>Capabilities</th>
+                        <th>Location</th>
+                        <th>Tier</th>
+                        <th>Create</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < azI.length; i++) { %>
+                        <tr>
+                            <th><%= azI[i].name %></th>
+                            <th><%= azI[i].family %></th>
+                            <th><%= azI[i].size %></th>
+                            <th>
+                                <ul>
+                                    <% //for(var j = 0; j < 25; j++) { %>
+                                        <li><%= //azI[i].capabilities[j].name %></li>
+                                    <% //} %>
+                                </ul>
+                            </th>
+                            <th><%= azI[i].locations %></th>
+                            <th><%= azI[i].tier %></th>
+                            <th><button type="button" class="btn btn-primary btn-lg">Create</button></th>
+                        </tr>
+                        <% } %>
+                </tbody>
+            </table>
         </div>
     </div>
     <%- include('include/_footer') %>

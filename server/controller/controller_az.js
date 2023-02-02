@@ -14,7 +14,7 @@ exports.find = async (req,res) => {
 
     regions = await azRdb.find({});
     instances = await azIdb.find({
-        'locationInfo.location': 'QatarCentral', 
+        'locationInfo.location': 'AustraliaCentral', 
         'resourceType': 'virtualMachines'
     });
 
