@@ -58,23 +58,22 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Size</th>
                         <th>Name</th>
                         <th>Family</th>
-                        <th>Size</th>
                         <th>Capabilities</th>
                         <th>Location</th>
-                        <th>Tier</th>
                         <th>Create</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < azI.length; i++) { %>
                         <tr>
+                            <th><%= azI[i].size %></th>
                             <th><%= azI[i].name %></th>
                             <th><%= azI[i].family %></th>
-                            <th><%= azI[i].size %></th>
                             <th>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="capabilities<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -92,12 +91,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#capabilities<%= i %>">
                                     Capabilities
                                 </button>
                             </th>
                             <th><%= azI[i].locations %></th>
-                            <th><%= azI[i].tier %></th>
                             <th><button type="button" class="btn btn-primary btn-lg">Create</button></th>
                         </tr>
                         <% } %>
