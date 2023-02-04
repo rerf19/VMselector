@@ -74,11 +74,27 @@
                             <th><%= azI[i].family %></th>
                             <th><%= azI[i].size %></th>
                             <th>
-                                <ul>
-                                    <% //for(var j = 0; j < 25; j++) { %>
-                                        <li><%= //azI[i].capabilities[j].name %></li>
-                                    <% //} %>
-                                </ul>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel"><%= azI[i].name %></h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <% for(var j = 0; j < (azI[i].capabilities).length; j++) { %>
+                                                    <li><%= azI[i].capabilities[j].name %> : <%= azI[i].capabilities[j].value %></li>
+                                                <% } %>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Capabilities
+                                </button>
                             </th>
                             <th><%= azI[i].locations %></th>
                             <th><%= azI[i].tier %></th>
