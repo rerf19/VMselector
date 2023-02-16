@@ -22,30 +22,60 @@
             <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
-            <form action="post" class="row g-3">
-                <div class="col-3">
+            <form method="get" action="/azure" class="row g-3">
+                <div class="col-12">
+                    <h3>General</h3>
+                </div>
+                <div class="col-6">
                     <label for="region" class="form-label">Region</label>
-                    <select id="region" class="form-select">
+                    <select id="region" class="form-select" name="region">
                         <% for(var i = 0; i < azR.length; i++) { %>
-                            <option value="<%= azR[i].displayName %>"><%= azR[i].displayName %></option>
-                        <% } %>
+                            <option value="<%= azR[i].name %>"><%= azR[i].displayName %></option>
+                            <% } %>
                     </select>
                 </div>
-                <div class="col-3">
-                    <label for="software" class="form-label">Software</label>
-                    <select id="software" class="form-select"></select>
-                </select>
+                <div class="col-6">
+                    <label for="family" class="form-label">Family</label>
+                    <select id="family" class="form-select" name="family">
+                        <option value="All">All</option>
+                        <option value="standardA">A</option>
+                        <option value="standardB">B</option>
+                        <option value="standardC">C</option>
+                        <option value="standardD">D</option>
+                        <option value="standardE">E</option>
+                        <option value="standardF">F</option>
+                        <option value="standardG">G</option>
+                        <option value="standardH">H</option>
+                        <option value="standardL">L</option>
+                        <option value="standardM">M</option>
+                        <option value="standardMv2">Mv2</option>
+                        <option value="standardN">N</option>
+                    </select>
+                </div>
+                <!---->
+                <div class="col-12">
+                    <h3>Especific</h3>
                 </div>
                 <div class="col-3">
-                    <label for="category" class="form-label">Category</label>
-                    <select id="category" class="form-select"></select>
+                    <label for="vCPUs" class="form-label">vCPUs</label>
+                    <select id="vCPUs" class="form-select" name="vCPUs"></select>
                 </div>
-            
                 <div class="col-3">
-                    <label for="VMseries" class="form-label">VM series</label>
-                    <select id="VMseries" class="form-select"></select>
+                    <label for="Ram" class="form-label">Ram (MemoryGB)</label>
+                    <select id="Ram" class="form-select" name="MemoryGB">
+                        <option value="">No Limit</option>
+                        <option value="">Max 11400</option>
+                    </select>
+                </div>
+                <!---->
+                <div class="col-12">
+                    <h3>Price</h3>
+                </div>
+                <div class="col-12">
+                    <button>Search</button>
                 </div>
             </form>
+            
         </div>
         <div id="list" class="row" style="margin-top: 40px;">
             <div class="col-1"></div>

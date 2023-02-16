@@ -4,9 +4,15 @@ exports.homeRoute = (req,res) => {
     res.render('index');
 }
 
-exports.azure = (req,res) => {
+exports.azure = async (req,res) => {
     //make a request to /api/azureI_DB
-    axios.get('http://localhost:3000/api/az')
+    axios.get('http://localhost:3000/api/az', {
+        params:
+        {
+            region: req.query.region,
+            family: req.query.family
+        }
+    })
     .then(function(response){
         res.render('azure',{
             azR: response.data.regions,
