@@ -30,14 +30,14 @@
                     <label for="region" class="form-label">Region</label>
                     <select id="region" class="form-select" name="region">
                         <% for(var i = 0; i < azR.length; i++) { %>
-                            <option value="<%= azR[i].name %>"><%= azR[i].displayName %></option>
-                            <% } %>
+                            <option value="<%= azR[i] %>"><%= azR[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-6">
                     <label for="family" class="form-label">Family</label>
                     <select id="family" class="form-select" name="family">
-                        <option value="All">All</option>
+                        <option value="">All</option>
                         <option value="standardA">A</option>
                         <option value="standardB">B</option>
                         <option value="standardC">C</option>
@@ -48,7 +48,6 @@
                         <option value="standardH">H</option>
                         <option value="standardL">L</option>
                         <option value="standardM">M</option>
-                        <option value="standardMv2">Mv2</option>
                         <option value="standardN">N</option>
                     </select>
                 </div>
@@ -58,13 +57,20 @@
                 </div>
                 <div class="col-3">
                     <label for="vCPUs" class="form-label">vCPUs</label>
-                    <select id="vCPUs" class="form-select" name="vCPUs"></select>
+                    <select id="vCPUs" class="form-select">
+                        <option value="11400">All Options</option> 
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azCPU[i] %>"><%= azCPU[i] %></option>
+                        <% } %>
+                    </select>
                 </div>
                 <div class="col-3">
                     <label for="Ram" class="form-label">Ram (MemoryGB)</label>
-                    <select id="Ram" class="form-select" name="MemoryGB">
-                        <option value="">No Limit</option>
-                        <option value="">Max 11400</option>
+                     <select id="Ram" class="form-select" > 
+                        <option value="1000">All Options</option>
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% } %> 
                     </select>
                 </div>
                 <!---->
@@ -128,7 +134,7 @@
                             <th><%= azI[i].locations %></th>
                             <th><button type="button" class="btn btn-primary btn-lg">Create</button></th>
                         </tr>
-                        <% } %>
+                    <%}%>
                 </tbody>
             </table>
         </div>

@@ -12,17 +12,17 @@ exports.find = async (req,res) => {
     //region
     const region = req.query.region || 'eastus';
     //family
-    const family = req.query.family || 'standardA'
+    const family = req.query.family || ''
 
     //ESPECIFIC
     //vCPUs
-    const vCPUs = req.query.vCPUs || 1000
+    //const _vCPUs = req.query.vCPUs || 1000
     //MemoryGB
-    const memory = req.query.MemoryGB || 999999
+    //const _memoryGB = req.query.MemoryGB || 11400
 
     //QUERIES
     //region
-    regions = await azRdb.find({}).catch(err => {res.status(500).send({ message : err.message || "Error Occurred while retriving region information" }) });
+    regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'})
     //instances
     instances = await azIdb.find({
         'locationInfo.location': region,
@@ -31,15 +31,9 @@ exports.find = async (req,res) => {
         //'capabilities.MemoryGB': { $lte :  "4" },
         'resourceType': 'virtualMachines'
     }).catch(err => {res.status(500).send({ message : err.message || "Error Occurred while retriving region information" }) });
-    //CPUs
-    cpus = await azIdb.find({
 
-    }).catch(err => {res.status(500).send({ message : err.message || "Error Occurred while retriving region information" }) });
-    //memory
-    memory = await azIdb.find({
-
-    }).catch(err => {res.status(500).send({ message : err.message || "Error Occurred while retriving region information" }) });
-    res.send({regions,instances,/*cpus,memory*/})
+    //return
+    res.send({regions,instances})
 }
 
 //update

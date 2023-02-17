@@ -11,6 +11,8 @@ exports.azure = async (req,res) => {
         {
             region: req.query.region,
             family: req.query.family
+            //vCPUs : req.query.vCPUs,
+            //memoryGB: req.query.memoryGB
         }
     })
     .then(function(response){
