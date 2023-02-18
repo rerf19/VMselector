@@ -22,7 +22,7 @@ exports.find = async (req,res) => {
 
     //QUERIES
     //region
-    regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'})
+    regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
     //instances
     instances = await azIdb.find({
         'locationInfo.location': region,
@@ -30,7 +30,7 @@ exports.find = async (req,res) => {
         //'capabilities.vCPUs': { $lte :  vCPUs},
         //'capabilities.MemoryGB': { $lte :  "4" },
         'resourceType': 'virtualMachines'
-    }).catch(err => {res.status(500).send({ message : err.message || "Error Occurred while retriving region information" }) });
+    }).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
 
     //return
     res.send({regions,instances})

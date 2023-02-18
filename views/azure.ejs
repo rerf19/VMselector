@@ -55,7 +55,7 @@
                 <div class="col-12">
                     <h3>Especific</h3>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select">
                         <option value="11400">All Options</option> 
@@ -64,10 +64,37 @@
                         <% } %>
                     </select>
                 </div>
-                <div class="col-3">
-                    <label for="Ram" class="form-label">Ram (MemoryGB)</label>
+                <div class="col-4">
+                    <label for="Ram" class="form-label">Ram(GB)</label>
                      <select id="Ram" class="form-select" > 
-                        <option value="1000">All Options</option>
+                        <option value="">All Options</option>
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% } %> 
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="Hard_Drive" class="form-label">Hard Drive(MB)</label>
+                     <select id="Hard_Drive" class="form-select" > 
+                        <option value="">All Options</option>
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% } %> 
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="vCPUpCore" class="form-label">vCPUs Per Core</label>
+                     <select id="vCPUpCore" class="form-select" > 
+                        <option value="">All Options</option>
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% } %> 
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
+                     <select id="MaxNetworkInterfaces" class="form-select" > 
+                        <option value="">All Options</option>
                         <% for(var i = 0; i < 0; i++) { %>
                             <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
                         <% } %> 
@@ -91,7 +118,7 @@
             <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
-            <table class="table">
+            <table class="table text-center">
                 <thead>
                     <tr>
                         <th>Size</th>
