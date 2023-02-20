@@ -10,15 +10,17 @@ exports.azure = async (req,res) => {
         params:
         {
             region: req.query.region,
-            family: req.query.family
-            //vCPUs : req.query.vCPUs,
-            //memoryGB: req.query.memoryGB
+            family: req.query.family,
+            cpu : req.query.vCPUs,
+            ram: req.query.ram
         }
     })
     .then(function(response){
         res.render('azure',{
             azR: response.data.regions,
             azI: response.data.instances,
+            azCPU: response.data.vcpus.cpus,
+            azRam: response.data.ram.Ram
         });
     })
     .catch(err => {

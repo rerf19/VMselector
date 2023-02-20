@@ -57,20 +57,20 @@
                 </div>
                 <div class="col-4">
                     <label for="vCPUs" class="form-label">vCPUs</label>
-                    <select id="vCPUs" class="form-select">
-                        <option value="11400">All Options</option> 
-                        <% for(var i = 0; i < 0; i++) { %>
+                    <select id="vCPUs" class="form-select" name="vCPUs">
+                        <option value="0">All Options</option> 
+                        <% for(var i = 0; i < azCPU.length; i++) { %>
                             <option value="<%= azCPU[i] %>"><%= azCPU[i] %></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="Ram" class="form-label">Ram(GB)</label>
-                     <select id="Ram" class="form-select" > 
-                        <option value="">All Options</option>
-                        <% for(var i = 0; i < 0; i++) { %>
-                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
-                        <% } %> 
+                     <select id="Ram" class="form-select" name="ram"> 
+                        <option value="0">All Options</option>
+                        <% for(var i = 0; i < azRam.length; i++) { %>
+                            <option value="<%= azRam[i] %>"><%= azRam[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
@@ -79,33 +79,39 @@
                         <option value="">All Options</option>
                         <% for(var i = 0; i < 0; i++) { %>
                             <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
-                        <% } %> 
+                        <% } %>
                     </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
+                    <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
+                     <select id="CpuArchitectureType" class="form-select" > 
+                        <option value="">All Options</option>
+                        <% for(var i = 0; i < 0; i++) { %>
+                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="col-4">
                     <label for="vCPUpCore" class="form-label">vCPUs Per Core</label>
                      <select id="vCPUpCore" class="form-select" > 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < 0; i++) { %>
                             <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
-                        <% } %> 
+                        <% } %>
                     </select>
                 </div>
-                <div class="col-6">
+                <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
                      <select id="MaxNetworkInterfaces" class="form-select" > 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < 0; i++) { %>
                             <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
-                        <% } %> 
+                        <% } %>
                     </select>
                 </div>
                 <!---->
                 <div class="col-12">
-                    <h3>Price</h3>
-                </div>
-                <div class="col-12">
-                    <button>Search</button>
+                    <button type="submit" class="btn btn-warning">Search</button>
                 </div>
             </form>
             
@@ -145,7 +151,7 @@
                                             </div>
                                             <div class="modal-body">
                                                 <% for(var j = 0; j < (azI[i].capabilities).length; j++) { %>
-                                                    <li><%= azI[i].capabilities[j].name %> : <%= azI[i].capabilities[j].value %></li>
+                                                    <li style="list-style-type: none;"><%= azI[i].capabilities[j].name %> : <%= azI[i].capabilities[j].value %></li>
                                                 <% } %>
                                             </div>
                                             <div class="modal-footer">
