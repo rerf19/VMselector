@@ -58,7 +58,7 @@
                 <div class="col-4">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
-                        <option value="0">All Options</option> 
+                        <option value="">All Options</option> 
                         <% for(var i = 0; i < azCPU.length; i++) { %>
                             <option value="<%= azCPU[i] %>"><%= azCPU[i] %></option>
                         <% } %>
@@ -67,7 +67,7 @@
                 <div class="col-4">
                     <label for="Ram" class="form-label">Ram(GB)</label>
                      <select id="Ram" class="form-select" name="ram"> 
-                        <option value="0">All Options</option>
+                        <option value="">All Options</option>
                         <% for(var i = 0; i < azRam.length; i++) { %>
                             <option value="<%= azRam[i] %>"><%= azRam[i] %></option>
                         <% } %>

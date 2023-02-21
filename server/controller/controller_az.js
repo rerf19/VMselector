@@ -37,7 +37,7 @@ exports.find = async (req,res) => {
     const vcpus = {cpus};
     vcpus.cpus.sort(function(a, b) {
         return a - b;
-      });
+    });
 
     //ram
     Ram = await azIdb.distinct('capabilities.5.value', {'resourceType': 'virtualMachines'})
@@ -46,6 +46,20 @@ exports.find = async (req,res) => {
         return a - b;
     });
 
+    //hard drive
+    hard_drive = await azIdb.distinct('capabilities.5.value', {'resourceType': 'virtualMachines'})
+    const hardDrive = {hard_drive};
+    hardDrive.hard_drive.sort(function(a, b) {
+        return a - b;
+    });
+
+    //cpu architecture
+    cpu_arc = await azIdb.distinct('capabilities.5.value', {'resourceType': 'virtualMachines'})
+    const cpuArc = {cpu_arc};
+    cpuArc.cpu_arc.sort(function(a, b) {
+        return a - b;
+    });
+    
     //return
     res.send({regions,instances,vcpus,ram})
 }
