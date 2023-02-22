@@ -32,6 +32,7 @@
                         <% for(var i = 0; i < azR.length; i++) { %>
                             <option value="<%= azR[i] %>"><%= azR[i] %></option>
                         <% } %>
+                        <option value="">All Options</option> 
                     </select>
                 </div>
                 <div class="col-6">
@@ -55,7 +56,7 @@
                 <div class="col-12">
                     <h3>Especific</h3>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
                         <option value="">All Options</option> 
@@ -64,7 +65,7 @@
                         <% } %>
                     </select>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <label for="Ram" class="form-label">Ram(GB)</label>
                      <select id="Ram" class="form-select" name="ram"> 
                         <option value="">All Options</option>
@@ -74,38 +75,29 @@
                     </select>
                 </div>
                 <div class="col-4">
-                    <label for="Hard_Drive" class="form-label">Hard Drive(MB)</label>
-                     <select id="Hard_Drive" class="form-select" > 
-                        <option value="">All Options</option>
-                        <% for(var i = 0; i < 0; i++) { %>
-                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
-                        <% } %>
-                    </select>
-                </div>
-                <div class="col-4">
                     <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
-                     <select id="CpuArchitectureType" class="form-select" > 
+                     <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
                         <option value="">All Options</option>
-                        <% for(var i = 0; i < 0; i++) { %>
-                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% for(var i = 0; i < azCpuArch.length; i++) { %>
+                            <option value="<%= azCpuArch[i] %>"><%= azCpuArch[i] %></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="vCPUpCore" class="form-label">vCPUs Per Core</label>
-                     <select id="vCPUpCore" class="form-select" > 
+                     <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
                         <option value="">All Options</option>
-                        <% for(var i = 0; i < 0; i++) { %>
-                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% for(var i = 0; i < azCpuPerCore.length; i++) { %>
+                            <option value="<%= azCpuPerCore[i] %>"><%= azCpuPerCore[i] %></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
-                     <select id="MaxNetworkInterfaces" class="form-select" > 
+                     <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
                         <option value="">All Options</option>
-                        <% for(var i = 0; i < 0; i++) { %>
-                            <option value="<%= azMemoryGB[i] %>"><%= azMemoryGB[i] %></option>
+                        <% for(var i = 0; i < azNetInter.length; i++) { %>
+                            <option value="<%= azNetInter[i] %>"><%= azNetInter[i] %></option>
                         <% } %>
                     </select>
                 </div>

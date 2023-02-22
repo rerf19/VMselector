@@ -12,15 +12,21 @@ exports.azure = async (req,res) => {
             region: req.query.region,
             family: req.query.family,
             cpu : req.query.vCPUs,
-            ram: req.query.ram
+            ram: req.query.ram,
+            cpuArch: req.query.cpuArch,
+            cpuPerCore: req.query.cpuPerCore,
+            netInter: req.query.netInter
         }
     })
     .then(function(response){
         res.render('azure',{
             azR: response.data.regions,
             azI: response.data.instances,
-            azCPU: response.data.vcpus.cpus,
-            azRam: response.data.ram.Ram
+            azCPU: response.data.vcpus.Cpus,
+            azRam: response.data.ram.Ram,
+            azCpuArch: response.data.cpuArch,
+            azCpuPerCore: response.data.cpuPerCore.CPU_Per_Core,
+            azNetInter: response.data.netInter.Net_Inter
         });
     })
     .catch(err => {
