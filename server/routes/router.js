@@ -7,7 +7,10 @@ var controller_az = require('../controller/controller_az');
 //Website routes
 route.get('/', services.homeRoute);
 route.get('/azure', services.azure);
+route.get('/aws',services.aws);
 
 //API
+//azure
 route.get('/api/az',controller_az.find);
+//aws
 module.exports = route;

@@ -4,6 +4,6 @@ var schema = new mongoose.Schema({
     
 })
 
-const azRdb = mongoose.model('az_regions',schema);
+const awsIdb = mongoose.model('aws_instances',schema);
 
-module.exports = azRdb;
+module.exports = awsIdb;

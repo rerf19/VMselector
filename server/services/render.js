@@ -33,3 +33,7 @@ exports.azure = async (req,res) => {
         res.send(err);
     })
 }
+
+exports.aws = async (req,res) => {
+    res.render('aws');
+}

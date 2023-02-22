@@ -1,5 +1,4 @@
-const azIdb = require('../model/model_az_I');
-const azRdb = require('../model/model_az_R');
+const azIdb = require('../model/model_az');
 
 const mongoose = require('mongoose');
 //Create
