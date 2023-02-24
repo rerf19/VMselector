@@ -35,5 +35,17 @@ exports.azure = async (req,res) => {
 }
 
 exports.aws = async (req,res) => {
-    res.render('aws');
+
+    axios.get('http://localhost:3000/api/aws',{
+
+    }).then(function(response){
+        res.render('aws', {
+            awsI: response.data.instances,
+            awsCpu: response.data.Cpus,
+            awsCores: response.data.Cores,
+            awsRam: response.data.Ram,
+            awsCpuArch: response.data.CpuArch,
+            awsNetInt: response.data.NetInt
+        })
+    });
 }

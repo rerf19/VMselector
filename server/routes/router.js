@@ -3,6 +3,7 @@ const route = express.Router();
 
 const services = require('../services/render');
 var controller_az = require('../controller/controller_az');
+var controller_aws = require('../controller/controller_aws');
 
 //Website routes
 route.get('/', services.homeRoute);
@@ -13,4 +14,5 @@ route.get('/aws',services.aws);
 //azure
 route.get('/api/az',controller_az.find);
 //aws
+route.get('/api/aws',controller_aws.find);
 module.exports = route;
