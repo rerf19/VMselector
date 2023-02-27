@@ -53,24 +53,24 @@ exports.find = async (req,res) => {
     });
 
     //cpu architecture
-    cpuArch = await azIdb.distinct('capabilities.7.value', {'resourceType': 'virtualMachines'})
+    // cpuArch = await azIdb.distinct('capabilities.7.value', {'resourceType': 'virtualMachines'})
 
     //vcpu Per Core
-    CPU_Per_Core = await azIdb.distinct('capabilities.13.value', {'resourceType': 'virtualMachines'})
-    const cpuPerCore = {CPU_Per_Core};
-    cpuPerCore.CPU_Per_Core.sort(function(a, b) {
-        return a - b;
-    });
+    // CPU_Per_Core = await azIdb.distinct('capabilities.13.value', {'resourceType': 'virtualMachines'})
+    // const cpuPerCore = {CPU_Per_Core};
+    // cpuPerCore.CPU_Per_Core.sort(function(a, b) {
+    //     return a - b;
+    // });
 
     //networks interface
-    Net_Inter = await azIdb.distinct('capabilities.23.value', {'resourceType': 'virtualMachines'})
-    const netInter = {Net_Inter};
-    netInter.Net_Inter.sort(function(a, b) {
-        return a - b;
-    });
+    // Net_Inter = await azIdb.distinct('capabilities.23.value', {'resourceType': 'virtualMachines'})
+    // const netInter = {Net_Inter};
+    // netInter.Net_Inter.sort(function(a, b) {
+    //     return a - b;
+    // });
 
     //return regions,instances,vcpus,ram,
-    res.send({regions,instances,vcpus,ram,cpuArch,cpuPerCore,netInter})
+    res.send({regions,instances,vcpus,ram})
 }
 
 //update
