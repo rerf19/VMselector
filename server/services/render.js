@@ -37,7 +37,14 @@ exports.azure = async (req,res) => {
 exports.aws = async (req,res) => {
 
     axios.get('http://localhost:3000/api/aws',{
-
+        params:
+        {
+            cpu: req.query.vCPUs,
+            ram: req.query.ram,
+            cpuArch: req.query.cpuArch,
+            cpuPerCore: req.query.cpuPerCore,
+            netInter: req.query.netInter
+        }
     }).then(function(response){
         res.render('aws', {
             awsI: response.data.instances,

@@ -25,18 +25,19 @@ exports.find = async (req,res) => {
 
     //QUERIES
     //region
+    console.log(_family)
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
     //instances
     instances = await azIdb.find({
         'locationInfo.location': { $regex: '.*' + _region},
         'family': { $regex: '.*' + _family + '.*'},
-        'capabilities.2.value': { $regex: '.*' + _vCPUs},
+        'capabilities.2.value': { $regex:  _vCPUs + '.*'},
         'capabilities.5.value': { $regex: '.*' + _memoryGB},
         'capabilities.7.value': { $regex: '.*' + _cpuArch},
         'capabilities.13.value': { $regex: '.*' + _cpuPerCore},
-        'capabilities.23.value': { $regex: '.*' + _netInter},
+        //'capabilities.23.value': { $regex: '.*' + _netInter},
         'resourceType': 'virtualMachines'
-    }).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
+    }).sort({ 'capabilities.2.value': 1 }).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
 
     //cpu
     Cpus = await azIdb.distinct('capabilities.2.value', {'resourceType': 'virtualMachines'})
