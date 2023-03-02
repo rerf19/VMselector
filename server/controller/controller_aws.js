@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 exports.find = async (req,res) => {
 
     //REQ
-    console.log(req.query)
     const _cpu = req.query.cpu || 0
     const _ram = req.query.ram || 0
     const _cpuArch = req.query.cpuArch || ''
@@ -45,4 +44,8 @@ exports.find = async (req,res) => {
 
 exports.findOne = async (req,res) => {
 
+    const id = req.query.id
+    info = await awsIdb.findById(id)
+    console.log(info)
+    res.send(info)
 }

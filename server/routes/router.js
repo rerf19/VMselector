@@ -16,4 +16,5 @@ route.get('/generate-aws',services.generate_aws)
 route.get('/api/az',controller_az.find);
 //aws
 route.get('/api/aws',controller_aws.find);
+route.get('/api/aws1',controller_aws.findOne)
 module.exports = route;

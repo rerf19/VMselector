@@ -59,10 +59,11 @@ exports.aws = async (req,res) => {
 
 exports.generate_aws = async (req,res) => {
 
-    axios.get('http://localhost:3000/api/aws', { params : { id : req.query.id }})
+    axios.get('http://localhost:3000/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
-        res.render('generatorAWS', {
-            insInfo : response.data
+        console.log(response.data)
+        res.render('generateAWS', {
+            vm : response.data
         })
         
     })
