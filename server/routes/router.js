@@ -9,6 +9,7 @@ var controller_aws = require('../controller/controller_aws');
 route.get('/', services.homeRoute);
 route.get('/azure', services.azure);
 route.get('/aws',services.aws);
+route.get('/generate-aws',services.generate_aws)
 
 //API
 //azure

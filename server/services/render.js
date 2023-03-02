@@ -56,3 +56,15 @@ exports.aws = async (req,res) => {
         })
     });
 }
+
+exports.generate_aws = async (req,res) => {
+
+    axios.get('http://localhost:3000/api/aws', { params : { id : req.query.id }})
+    .then(function(response){
+        res.render('generatorAWS', {
+            insInfo : response.data
+        })
+        
+    })
+    
+}
