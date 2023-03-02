@@ -46,6 +46,6 @@ exports.findOne = async (req,res) => {
 
     const id = req.query.id
     info = await awsIdb.findById(id)
-    console.log(info)
     res.send(info)
+    
 }

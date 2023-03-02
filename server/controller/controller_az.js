@@ -1,9 +1,6 @@
 const azIdb = require('../model/model_az');
 
 const mongoose = require('mongoose');
-//Create
-//export.createVM = (req,res) => {
-//}
 
 //get all the the intances infomation
 exports.find = async (req,res) => {
@@ -67,8 +64,10 @@ exports.find = async (req,res) => {
     res.send({regions,instances,vcpus,ram})
 }
 
-//update
-//export.update
+exports.findOne = async (req,res) => {
 
-//delete
-//export.delete 
+    const id = req.query.id
+    info = await azIdb.findById(id)
+    res.send(info)
+    
+}

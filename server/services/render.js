@@ -57,11 +57,22 @@ exports.aws = async (req,res) => {
     });
 }
 
+exports.generate_az = async (req,res) => {
+
+    axios.get('http://localhost:3000/api/az1', { params : { id : req.query.id }})
+    .then(function(response){
+        res.render('generateAZ', {
+            vm : response.data
+        })
+        
+    })
+    
+}
+
 exports.generate_aws = async (req,res) => {
 
     axios.get('http://localhost:3000/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
-        console.log(response.data)
         res.render('generateAWS', {
             vm : response.data
         })
