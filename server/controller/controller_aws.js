@@ -15,7 +15,7 @@ exports.find = async (req,res) => {
     //QUERIES
     //region = east US
     //instances
-    if(_cpu == ''){
+    if(_cpu == 0){
         instances = await awsIdb.find({}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
     } else {
         instances = await awsIdb.find({

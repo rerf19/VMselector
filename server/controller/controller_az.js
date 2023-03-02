@@ -7,25 +7,18 @@ const mongoose = require('mongoose');
 
 //get all the the intances infomation
 exports.find = async (req,res) => {
-    //REQUEST
-    //region
+
+    //REQ
     const _region = req.query.region
-    //family
     const _family = req.query.family || ''
-    //vCPUs
     const _vCPUs = req.query.cpu || ''
-    //MemoryGB
     const _memoryGB = req.query.ram || ''
-    //cpu architecture
     const _cpuArch = req.query.cpuArch || ''
-    //cpu per core
     const _cpuPerCore = req.query.cpuPerCore || ''
-    //network interfaces
     const _netInter = req.query.netInter || ''
 
     //QUERIES
     //region
-    console.log(_family)
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
     //instances
     instances = await azIdb.find({
