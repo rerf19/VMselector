@@ -1,11 +1,10 @@
 const axios = require('axios');
 const fs = require('fs');
+const { exec } = require("child_process");
 
 const { TerraformGenerator, Resource, map, fn } = require('terraform-generator');
 
-const tfg = new TerraformGenerator({
-    required_version: '4.54'
-});
+const tfg = new TerraformGenerator();
 
 tfg.provider('aws', {
     region: 'us-east-1'
@@ -20,7 +19,7 @@ exports.create = async (req,res) => {
 
         const instanceName = 'instance';
         const instanceType = response.data.InstanceType;
-        const amiId = 'ami-0c55b159cbfafe1f0'; // Amazon Linux 2 AMI
+        const amiId = 'ami-0fd2c44049dd805b8'; // Amazon Linux 2 AMI
 
         tfg.resource('aws_instance', instanceName, {
             ami: amiId,
@@ -29,9 +28,31 @@ exports.create = async (req,res) => {
 
         tfg.generate();
         tfg.write({
-            dir: 'tf',
+            dir: 'tf/AWS',
             format: true
-          });
+        });
+
+        console.log("WAIT FOR THE 'Terraform Apply' ...");
+
+        exec("terraform init",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+            if (error) {
+              console.error(`exec error: ${error}`);
+              return;
+            }
+          
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+        });
+
+        exec("terraform plan",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+            if (error) {
+              console.error(`exec error: ${error}`);
+              return;
+            }
+          
+            console.log(`stdout: ${stdout}`);
+            console.error(`stderr: ${stderr}`);
+        });
 
         res.redirect('/aws');
     })

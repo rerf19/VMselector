@@ -11,11 +11,11 @@ const create_az = require('../controller/create_az');
 route.get('/', render.homeRoute);
 route.get('/azure', render.azure);
 route.get('/aws', render.aws);
-route.get('/generate-aws', render.generate_aws);
 route.get('/generate-az', render.generate_az);
+route.get('/generate-aws', render.generate_aws);
 
+route.get('/create-az', create_az.create);
 route.get('/create-aws', create_aws.create);
-route.get('/create-az', create_aws.create);
 
 //API
 //azure
