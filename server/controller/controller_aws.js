@@ -42,6 +42,7 @@ exports.find = async (req,res) => {
     res.send({instances,Cpus,Ram,CpuArch,Cores,NetInt});
 }
 
+//find one document
 exports.findOne = async (req,res) => {
 
     const id = req.query.id
