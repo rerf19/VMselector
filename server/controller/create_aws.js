@@ -4,7 +4,11 @@ const fs = require('fs');
 const { TerraformGenerator, Resource, map, fn } = require('terraform-generator');
 
 const tfg = new TerraformGenerator({
-    required_version: '>= 0.12'
+    required_version: '4.54'
+});
+
+tfg.provider('aws', {
+    region: 'us-east-1'
 });
 
 
@@ -18,12 +22,12 @@ exports.create = async (req,res) => {
         const instanceType = response.data.InstanceType;
         const amiId = 'ami-0c55b159cbfafe1f0'; // Amazon Linux 2 AMI
 
-        const resource = tfg.resource('aws_instance', instanceName, {
+        tfg.resource('aws_instance', instanceName, {
             ami: amiId,
             instance_type: instanceType,
         });
 
-        const result = tfg.generate();
+        tfg.generate();
         tfg.write({
             dir: 'tf',
             format: true
