@@ -1,12 +1,16 @@
-const axios = require('axios');
+//Libraries required for this document
+const axios = require('axios'); //extract the necessary information from links
 
+//Render the home page
 exports.homeRoute = (req,res) => {
     res.render('index');
 }
 
+//Render the Azure Search Page
 exports.azure = async (req,res) => {
     //make a request to /api/azureI_DB
     axios.get('http://localhost:3000/api/az', {
+        //send all the params to the back-end
         params:
         {
             region: req.query.region,
@@ -20,13 +24,11 @@ exports.azure = async (req,res) => {
     })
     .then(function(response){
         res.render('azure',{
+            //send all the necessary information to ejs
             azR: response.data.regions,
             azI: response.data.instances,
             azCPU: response.data.vcpus.Cpus,
             azRam: response.data.ram.Ram
-            //azCpuArch: response.data.cpuArch,
-            //azCpuPerCore: response.data.cpuPerCore.CPU_Per_Core,
-            //azNetInter: response.data.netInter.Net_Inter
         });
     })
     .catch(err => {
@@ -34,11 +36,13 @@ exports.azure = async (req,res) => {
     })
 }
 
+//Render the AWS Search Page
 exports.aws = async (req,res) => {
 
     axios.get('http://localhost:3000/api/aws',{
         params:
         {
+            //send all the params to the back-end
             cpu: req.query.vCPUs,
             ram: req.query.ram,
             cpuArch: req.query.cpuArch,
@@ -47,6 +51,7 @@ exports.aws = async (req,res) => {
         }
     }).then(function(response){
         res.render('aws', {
+            //send all the necessary information to ejs
             awsI: response.data.instances,
             awsCpu: response.data.Cpus,
             awsCores: response.data.Cores,
@@ -57,11 +62,14 @@ exports.aws = async (req,res) => {
     });
 }
 
+//Render the Generate Azure Page
 exports.generate_az = async (req,res) => {
 
+    //request the information from the especific link
     axios.get('http://localhost:3000/api/az1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAZ', {
+            //send all the infomatoin to ejs
             vm : response.data
         })
         
@@ -69,11 +77,14 @@ exports.generate_az = async (req,res) => {
     
 }
 
+//Render the Generate AWS Page
 exports.generate_aws = async (req,res) => {
 
+    //request the information from the especific link
     axios.get('http://localhost:3000/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAWS', {
+            //send all the infomatoin to ejs
             vm : response.data
         })
         

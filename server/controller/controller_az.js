@@ -1,11 +1,13 @@
+//Model that connects to the right collection
 const azIdb = require('../model/model_az');
 
-const mongoose = require('mongoose');
+//Libraries required for this document
+const mongoose = require('mongoose'); //to search on the database
 
-//get all the the intances infomation
+//Function that finds all the requested VMs, depending on the specifications
 exports.find = async (req,res) => {
 
-    //REQ
+    //variables from the user
     const _region = req.query.region
     const _family = req.query.family || ''
     const _vCPUs = req.query.cpu || ''
@@ -15,9 +17,9 @@ exports.find = async (req,res) => {
     const _netInter = req.query.netInter || ''
 
     //QUERIES
-    //region
+    //find region
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
-    //instances
+    //find instances
     instances = await azIdb.find({
         'locationInfo.location': { $regex: '.*' + _region},
         'family': { $regex: '.*' + _family + '.*'},
@@ -29,42 +31,25 @@ exports.find = async (req,res) => {
         'resourceType': 'virtualMachines'
     }).sort({ 'capabilities.2.value': 1 }).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
 
-    //cpu
+    //find cpu
     Cpus = await azIdb.distinct('capabilities.2.value', {'resourceType': 'virtualMachines'})
     const vcpus = {Cpus};
     vcpus.Cpus.sort(function(a, b) {
         return a - b;
     });
 
-    //ram
+    //find ram
     Ram = await azIdb.distinct('capabilities.5.value', {'resourceType': 'virtualMachines'})
     const ram = {Ram};
     ram.Ram.sort(function(a, b) {
         return a - b;
     });
 
-    //cpu architecture
-    // cpuArch = await azIdb.distinct('capabilities.7.value', {'resourceType': 'virtualMachines'})
-
-    //vcpu Per Core
-    // CPU_Per_Core = await azIdb.distinct('capabilities.13.value', {'resourceType': 'virtualMachines'})
-    // const cpuPerCore = {CPU_Per_Core};
-    // cpuPerCore.CPU_Per_Core.sort(function(a, b) {
-    //     return a - b;
-    // });
-
-    //networks interface
-    // Net_Inter = await azIdb.distinct('capabilities.23.value', {'resourceType': 'virtualMachines'})
-    // const netInter = {Net_Inter};
-    // netInter.Net_Inter.sort(function(a, b) {
-    //     return a - b;
-    // });
-
-    //return regions,instances,vcpus,ram,
+    //return all the necessary data to the front-end
     res.send({regions,instances,vcpus,ram})
 }
 
-//find one document
+//Function that return all the data from one document
 exports.findOne = async (req,res) => {
 
     const id = req.query.id

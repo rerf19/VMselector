@@ -1,11 +1,13 @@
+//Model that connects to the right collection
 const awsIdb = require('../model/model_aws');
 
-const mongoose = require('mongoose');
+//Libraries required for this document
+const mongoose = require('mongoose'); //to search on the database
 
-//find
+//Function that finds all the requested VMs, depending on the specifications
 exports.find = async (req,res) => {
 
-    //REQ
+    //variables from the user
     const _cpu = req.query.cpu || 0
     const _ram = req.query.ram || 0
     const _cpuArch = req.query.cpuArch || ''
@@ -42,7 +44,7 @@ exports.find = async (req,res) => {
     res.send({instances,Cpus,Ram,CpuArch,Cores,NetInt});
 }
 
-//find one document
+//Function that return all the data from one document
 exports.findOne = async (req,res) => {
 
     const id = req.query.id
