@@ -8,58 +8,74 @@ const mongoose = require('mongoose'); //to search on the database
 exports.find = async (req,res) => {
 
     //variables from the user
-    const _region = req.query.region
-    const _family = req.query.family || ''
-    const _vCPUs = req.query.cpu || ''
-    const _memoryGB = req.query.ram || ''
-    const _cpuArch = req.query.cpuArch || ''
-    const _cpuPerCore = req.query.cpuPerCore || ''
-    const _netInter = req.query.netInter || ''
+    const _region = req.query.region 
+    const _family = req.query.family 
+    const _vCPUs = req.query.cpu 
+    const _memoryGB = req.query.ram 
+    const _cpuArch = req.query.cpuArch 
+    const _cpuPerCore = req.query.cpuPerCore 
+    const _netInter = req.query.netInter 
 
     //QUERIES
+    //instances
+    const query = {
+        'locationInfo.location' : { $regex: '.*' + _region},
+        'family' : { $regex: '.*' + _family + '.*'},
+        'resourceType': 'virtualMachines'
+    }
+      
+    const capabilities = []
+      
+    if (_vCPUs) {
+    capabilities.push({
+        'name': 'vCPUs',
+        'value': _vCPUs
+    })
+    }
+      
+    if (_memoryGB) {
+    capabilities.push({
+        'name': 'MemoryGB',
+        'value': _memoryGB
+    })
+    }
+      
+    if (_cpuArch) {
+    capabilities.push({
+        'name': 'CpuArchitectureType',
+        'value': _cpuArch
+    })
+    }
+      
+    if (_cpuPerCore) {
+    capabilities.push({
+        'name': 'vCPUsPerCore',
+        'value': _cpuPerCore 
+    })
+    }
+      
+    if (_netInter) {
+    capabilities.push({
+        'name': 'MaxNetworkInterfaces',
+        'value': _netInter
+    })
+    }
+      
+    if (capabilities.length > 0) {
+    query.capabilities = { $all: capabilities }
+    }
+      
+    const instances = await azIdb.find(query)
+    .sort({ 'capabilities.value': 1 })
+    .catch(err => {
+        res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
+    });
+    
     //find region
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
     
-
-    //instances
-    instances = await azIdb.find({
-        'locationInfo.location' : { $regex: '.*' + _region},
-        'family' : { $regex: '.*' + _family + '.*'},
-        capabilities: {
-            $elemMatch: {
-                'name': 'vCPUs',
-                'value': { $regex: '.*' + _vCPUs }
-            }
-        },
-        capabilities: {
-            $elemMatch: {
-                'name': 'MemoryGB',
-                'value': { $regex: '.*' + _memoryGB }
-            }
-        },
-        capabilities: {
-            $elemMatch: {
-                'name': 'CpuArchitectureType',
-                'value': { $regex: '.*' + _cpuArch }
-            }
-        },
-        capabilities: {
-            $elemMatch: {
-                'name': 'vCPUsPerCore',
-                'value': { $regex: '.*' + _cpuPerCore }
-            }
-        },
-        capabilities: {
-           $elemMatch: {
-               'name': 'MaxNetworkInterfaces',
-               'value': { $regex: '.*' + _netInter }
-           }
-        },
-        'resourceType': 'virtualMachines'
-    }).sort({ 'capabilities.value': 1 }).catch(err => {
-        res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
-    });
-
+    console.log(req.query)
+    
     //find cpu
     Cpus = await azIdb.distinct('capabilities.2.value', {
         'resourceType': 'virtualMachines',
