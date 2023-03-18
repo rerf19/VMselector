@@ -28,7 +28,10 @@ exports.azure = async (req,res) => {
             azR: response.data.regions,
             azI: response.data.instances,
             azCPU: response.data.vcpus.Cpus,
-            azRam: response.data.ram.Ram
+            azRam: response.data.ram.Ram,
+            azCpuArch : response.data.cpuArch.CpuArch,
+            azCore : response.data.core.Core,
+            azNetInt: response.data.netInt.NetInt
         });
     })
     .catch(err => {

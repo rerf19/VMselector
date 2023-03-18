@@ -78,26 +78,27 @@
                     <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
                      <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
                         <option value="">All Options</option>
-                        <option value="Arm64">Arm64</option>
-                        <option value="x64">x64</option>
+                        <% for(var i = 0; i < azCpuArch.length; i++) { %>
+                            <option value="<%= azCpuArch[i] %>"><%= azCpuArch[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="vCPUpCore" class="form-label">vCPUs Per Core</label>
                      <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
                         <option value="">All Options</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <% for(var i = 0; i < azCore.length; i++) { %>
+                            <option value="<%= azCore[i] %>"><%= azCore[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
                      <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
                         <option value="">All Options</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="8">8</option>
+                        <% for(var i = 0; i < azNetInt.length; i++) { %>
+                            <option value="<%= azNetInt[i] %>"><%= azNetInt[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <!---->
