@@ -9,14 +9,21 @@ const controller_aws = require('../controller/controller_aws'); //functiond to s
 const create_aws = require('../controller/create_aws'); //functiond to create the azure VM
 const create_az = require('../controller/create_az'); //functiond to create the azure Azure
 
+
 //Website routes
 route.get('/', render.homeRoute);
+
+    //search pages
 route.get('/azure', render.azure);
 route.get('/aws', render.aws);
+route.get('/providers', render.providers);
+
+    //generate and create
 route.get('/generate-az', render.generate_az);
 route.get('/generate-aws', render.generate_aws);
 route.get('/create-az', create_az.create);
 route.get('/create-aws', create_aws.create);
+
 
 //API
 //Azure API

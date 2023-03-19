@@ -65,6 +65,11 @@ exports.aws = async (req,res) => {
     });
 }
 
+//render the all providers
+exports.providers = async (req,res) => {
+    res.render('allProviders');
+}
+
 //Render the Generate Azure Page
 exports.generate_az = async (req,res) => {
 

@@ -27,42 +27,42 @@ exports.find = async (req,res) => {
     const capabilities = []
       
     if (_vCPUs) {
-    capabilities.push({
-        'name': 'vCPUs',
-        'value': _vCPUs
-    })
+        capabilities.push({
+            'name': 'vCPUs',
+            'value': _vCPUs
+        })
     }
       
     if (_memoryGB) {
-    capabilities.push({
-        'name': 'MemoryGB',
-        'value': _memoryGB
-    })
+        capabilities.push({
+            'name': 'MemoryGB',
+            'value': _memoryGB
+        })
     }
       
     if (_cpuArch) {
-    capabilities.push({
-        'name': 'CpuArchitectureType',
-        'value': _cpuArch
-    })
+        capabilities.push({
+            'name': 'CpuArchitectureType',
+            'value': _cpuArch
+        })
     }
       
     if (_cpuPerCore) {
-    capabilities.push({
-        'name': 'vCPUsPerCore',
-        'value': _cpuPerCore 
-    })
+        capabilities.push({
+            'name': 'vCPUsPerCore',
+            'value': _cpuPerCore 
+        })
     }
       
     if (_netInter) {
-    capabilities.push({
-        'name': 'MaxNetworkInterfaces',
-        'value': _netInter
-    })
+        capabilities.push({
+            'name': 'MaxNetworkInterfaces',
+            'value': _netInter
+        })
     }
       
     if (capabilities.length > 0) {
-    query.capabilities = { $all: capabilities }
+        query.capabilities = { $all: capabilities }
     }
       
     const instances = await azIdb.find(query)

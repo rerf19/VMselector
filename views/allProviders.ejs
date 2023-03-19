@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VM Selector - All Providers</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/_root.css">
+    <link rel="stylesheet" href="css/_nav.css">
+    <link rel="stylesheet" href="css/_provider.css">
+    <link rel="stylesheet" href="css/_footer.css">
+</head>
+<body>
+    <%- include('include/_nav') %>
+    <div class="container-fluid">
+        <div id="forml" class="row" style="margin-top: 100px;">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1>Search - All Providers</h1>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-12"></div>
+            <!---->
+            <form method="get" action="/" class="row g-3">
+                <!---->
+                <div class="col-12">
+                    <h3>Especific</h3>
+                </div>
+                <div class="col-6">
+                    <label for="vCPUs" class="form-label">vCPUs</label>
+                    <select id="vCPUs" class="form-select" name="vCPUs">
+                        <option value="">All Options</option> 
+                        
+                    </select>
+                </div>
+                <div class="col-6">
+                    <label for="Ram" class="form-label">Ram(MB)</label>
+                     <select id="Ram" class="form-select" name="ram"> 
+                        <option value="">All Options</option>
+                        
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
+                     <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
+                        <option value="">All Options</option>
+                        
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="vCPUpCore" class="form-label">Cores</label>
+                     <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
+                        <option value="">All Options</option>
+                        
+                    </select>
+                </div>
+                <div class="col-4">
+                    <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
+                     <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
+                        <option value="">All Options</option>
+                        
+                    </select>
+                </div>
+                <!---->
+                <div class="col-12">
+                    <button type="submit" class="btn btn-warning">Search</button>
+                </div>
+            </form>
+        </div>
+        <div id="list" class="row" style="margin-top: 40px;">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <h1>List</h1>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-12"></div>
+            <!---->
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Capabilities</th>
+                        <th>Create</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%- include('include/_footer') %>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</html>
