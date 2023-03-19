@@ -22,7 +22,7 @@
             <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
-            <form method="get" action="/" class="row g-3">
+            <form method="get" action="/providers" class="row g-3">
                 <!---->
                 <div class="col-12">
                     <h3>Especific</h3>
@@ -31,35 +31,45 @@
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
                         <option value="">All Options</option> 
-                        
+                        <% for (const i in prCPU) { %>
+                            <option value="<%= prCPU[i] %>"><%= prCPU[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-6">
                     <label for="Ram" class="form-label">Ram(MB)</label>
                      <select id="Ram" class="form-select" name="ram"> 
                         <option value="">All Options</option>
-                        
+                        <% for (const i in prNetInt) { %>
+                            <option value="<%= prNetInt[i] %>"><%= prNetInt[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
                      <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
                         <option value="">All Options</option>
-                        
+                        <% for (const i in prCpuArch) { %>
+                            <option value="<%= prCpuArch[i] %>"><%= prCpuArch[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="vCPUpCore" class="form-label">Cores</label>
                      <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
                         <option value="">All Options</option>
-                        
+                        <% for (const i in prCore) { %>
+                            <option value="<%= prCore[i] %>"><%= prCore[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
                      <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
                         <option value="">All Options</option>
-                        
+                        <% for (const i in prNetInt) { %>
+                            <option value="<%= prNetInt[i] %>"><%= prNetInt[i] %></option>
+                        <% } %>
                     </select>
                 </div>
                 <!---->
@@ -79,13 +89,75 @@
             <table class="table text-center">
                 <thead>
                     <tr>
-                        <th>Type</th>
+                        <th>Name</th>
                         <th>Capabilities</th>
                         <th>Create</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <% for(const i in prI) { %>
+                        <tr>
+                            <% if (prI[i].InstanceType) { %>
+                                <th><%= prI[i].InstanceType %></th>
+                                <th>
+                                    <div class="modal fade" id="capabilities<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><%= prI[i].InstanceType %></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <li style="list-style-type: none;">CPU Architecture: <%= prI[i].ProcessorInfo.SupportedArchitectures %></li>
+                                                    <li style="list-style-type: none;">vCPU: <%= prI[i].VCpuInfo.DefaultVCpus %></li>
+                                                    <li style="list-style-type: none;">Cores: <%= prI[i].VCpuInfo.DefaultCores %></li>
+                                                    <li style="list-style-type: none;">Threads Per Core: <%= prI[i].VCpuInfo.DefaultThreadsPerCore %></li>
+                                                    <li style="list-style-type: none;">Ram (MB): <%= prI[i].MemoryInfo.SizeInMiB %></li>
+                                                    <li style="list-style-type: none;">Network Performance: <%= prI[i].NetworkInfo.NetworkPerformance %></li>
+                                                    <li style="list-style-type: none;">Max Network Interfaces: <%= prI[i].NetworkInfo.MaximumNetworkInterfaces %></li>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#capabilities<%= i %>">
+                                        Capabilities
+                                    </button>
+                                </th>
+                                
+                                <th><a href="/generate-aws?id=<%= prI[i]._id%>" target="_blank" ><button type="button" class="btn btn-primary btn-lg" >Create</button></a></th>
+                            <% } else { %>
+                                <th><%= prI[i].size %></th>
+                                <th>
+                                    <div class="modal fade" id="capabilities<%= i %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel"><%= prI[i].name %></h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <% for(var j = 0; j < (prI[i].capabilities).length; j++) { %>
+                                                        <li style="list-style-type: none;"><%= prI[i].capabilities[j].name %> : <%= prI[i].capabilities[j].value %></li>
+                                                    <% } %>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#capabilities<%= i %>">
+                                        Capabilities
+                                    </button>
+                                </th>
+                                <th><a href="/generate-az?id=<%= prI[i]._id %>" target="_blank"><button type="button" class="btn btn-primary btn-lg">Create</button></a></th>
+                            </tr>
+                            <% } %>
+                        </tr>
+                    <%}%>
                 </tbody>
             </table>
         </div>

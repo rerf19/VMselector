@@ -67,7 +67,64 @@ exports.aws = async (req,res) => {
 
 //render the all providers
 exports.providers = async (req,res) => {
-    res.render('allProviders');
+    const [az, aws] = await Promise.all([
+        axios.get(`http://localhost:3000/api/az`,{
+            //send all the params to the back-end
+            params:
+            {
+                region: 'eastus',
+                family: '',
+                cpu : req.query.vCPUs,
+                ram: req.query.ram,
+                cpuArch: req.query.cpuArch,
+                cpuPerCore: req.query.cpuPerCore,
+                netInter: req.query.netInter
+            }
+        })
+        .then(function(response){
+            azI = response.data.instances,
+            azCPU = response.data.vcpus.Cpus,
+            azRam = response.data.ram.Ram,
+            azCpuArch = response.data.cpuArch.CpuArch,
+            azCore = response.data.core.Core,
+            azNetInt = response.data.netInt.NetInt
+        }),
+        axios.get(`http://localhost:3000/api/aws`,{
+            //send all the params to the back-end
+            params:
+            {
+                cpu : req.query.vCPUs,
+                ram: req.query.ram,
+                cpuArch: req.query.cpuArch,
+                cpuPerCore: req.query.cpuPerCore,
+                netInter: req.query.netInter
+            }
+        })
+        .then(function(response){
+            //send all the necessary information to ejs
+            awsI = response.data.instances,
+            awsCpu = response.data.Cpus,
+            awsCores = response.data.Cores,
+            awsRam = response.data.Ram,
+            awsCpuArch = response.data.CpuArch,
+            awsNetInt = response.data.NetInt
+            
+        })
+    ]);
+
+    pI = Object.assign({}, azI, awsI)
+    pCPU = Object.assign({}, azCPU, awsCpu);
+    pCpuArch = Object.assign({}, azCpuArch, awsCpuArch);
+    pNetInt = Object.assign({}, azNetInt, awsNetInt);
+    pCore = Object.assign({}, azCore, awsCores);
+    
+    res.render('allProviders' , {
+        prI : pI,
+        prCPU : pCPU,
+        prNetInt : pNetInt,
+        prCpuArch : pCpuArch,
+        prCore : pCore
+    } )
 }
 
 //Render the Generate Azure Page

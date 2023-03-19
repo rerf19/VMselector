@@ -66,7 +66,7 @@ exports.find = async (req,res) => {
     }
       
     const instances = await azIdb.find(query)
-    .sort({ 'capabilities.value': 1 })
+    .sort({ 'family': 1 })
     .catch(err => {
         res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
     });
