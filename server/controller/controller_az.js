@@ -15,7 +15,9 @@ exports.find = async (req,res) => {
     const _cpuArch = req.query.cpuArch 
     const _cpuPerCore = req.query.cpuPerCore 
     const _netInter = req.query.netInter 
+    allProvider = req.query.providers || 0
 
+    console.log(req.query)
     //QUERIES
     //instances
     const query = {
@@ -27,6 +29,7 @@ exports.find = async (req,res) => {
     const capabilities = []
       
     if (_vCPUs) {
+        allProvider = 0
         capabilities.push({
             'name': 'vCPUs',
             'value': _vCPUs
@@ -34,6 +37,7 @@ exports.find = async (req,res) => {
     }
       
     if (_memoryGB) {
+        allProvider = 0
         capabilities.push({
             'name': 'MemoryGB',
             'value': _memoryGB
@@ -41,6 +45,7 @@ exports.find = async (req,res) => {
     }
       
     if (_cpuArch) {
+        allProvider = 0
         capabilities.push({
             'name': 'CpuArchitectureType',
             'value': _cpuArch
@@ -48,6 +53,7 @@ exports.find = async (req,res) => {
     }
       
     if (_cpuPerCore) {
+        allProvider = 0
         capabilities.push({
             'name': 'vCPUsPerCore',
             'value': _cpuPerCore 
@@ -55,6 +61,7 @@ exports.find = async (req,res) => {
     }
       
     if (_netInter) {
+        allProvider = 0
         capabilities.push({
             'name': 'MaxNetworkInterfaces',
             'value': _netInter
@@ -64,17 +71,22 @@ exports.find = async (req,res) => {
     if (capabilities.length > 0) {
         query.capabilities = { $all: capabilities }
     }
-      
-    const instances = await azIdb.find(query)
-    .sort({ 'family': 1 })
-    .catch(err => {
-        res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
-    });
+
+    if(allProvider == 1){
+        instances = {}
+    } else {
+        instances = await azIdb.find(query)
+        .sort({ 'family': 1 })
+        .catch(err => {
+            res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
+        });
+    }
+
+    //console.log(instances);
     
     //find region
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });
     
-    console.log(req.query)
     
     //find cpu
     Cpus = await azIdb.distinct('capabilities.2.value', {

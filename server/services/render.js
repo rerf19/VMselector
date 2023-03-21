@@ -78,7 +78,8 @@ exports.providers = async (req,res) => {
                 ram: req.query.ram,
                 cpuArch: req.query.cpuArch,
                 cpuPerCore: req.query.cpuPerCore,
-                netInter: req.query.netInter
+                netInter: req.query.netInter,
+                providers : 1
             }
         })
         .then(function(response){
@@ -111,13 +112,12 @@ exports.providers = async (req,res) => {
             
         })
     ]);
-
+    
     pI = Object.assign({}, azI, awsI)
     pCPU = Object.assign({}, azCPU, awsCpu);
     pCpuArch = Object.assign({}, azCpuArch, awsCpuArch);
     pNetInt = Object.assign({}, azNetInt, awsNetInt);
     pCore = Object.assign({}, azCore, awsCores);
-    
     res.render('allProviders' , {
         prI : pI,
         prCPU : pCPU,

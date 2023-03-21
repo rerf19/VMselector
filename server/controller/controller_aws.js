@@ -38,7 +38,6 @@ exports.find = async (req,res) => {
     
     instances = {}
     if(Object.keys(query).length !== 0){
-        console.log(query)
         instances = await awsIdb.find(query).sort({ 'VCpuInfo.DefaultVCpus': 1 }).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving instances information" }) });
     }
 
