@@ -1,28 +1,20 @@
-.container-fluid{
-    border: 1px red solid;
-}
 
 /* Top of the Page / Title / Slogan */
 #top{
     font-size: large;
     height: 80vh;
     font-family: 'Alfa Slab One', cursive;
-    width: 100vw;
     margin: 0;
 }
 
 #top h1{ /* h1 within the #top*/
     font-size: 90px;
-    border: 1px red solid;
     text-align: left;
     color: var(--color3);
-    margin-left: 6vw;
 }
 
 #top h4{
-    vertical-align: center;
     color: var(--color3);
-    width: 100px;
 }
 
 /* ---------------------------------- */
