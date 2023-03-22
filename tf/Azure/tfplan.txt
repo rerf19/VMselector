@@ -1,0 +1,65 @@
+azurerm_resource_group.rg_A8_v2: Refreshing state... [id=/subscriptions/895ffbb1-42ee-4ba8-a702-028f769f07bc/resourceGroups/rg_A8_v2_name]
+azurerm_subnet.sb_A8_v2: Refreshing state... [id=/subscriptions/895ffbb1-42ee-4ba8-a702-028f769f07bc/resourceGroups/rg_A8_v2_name/providers/Microsoft.Network/virtualNetworks/vir_A8_v2_name/subnets/sb_A8_v2_name]
+azurerm_virtual_network.vir_A8_v2: Refreshing state... [id=/subscriptions/895ffbb1-42ee-4ba8-a702-028f769f07bc/resourceGroups/rg_A8_v2_name/providers/Microsoft.Network/virtualNetworks/vir_A8_v2_name]
+azurerm_network_interface.ni_A8_v2: Refreshing state... [id=/subscriptions/895ffbb1-42ee-4ba8-a702-028f769f07bc/resourceGroups/rg_A8_v2_name/providers/Microsoft.Network/networkInterfaces/ni_A8_v2_name]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_linux_virtual_machine.A8_v2 will be created
+  + resource "azurerm_linux_virtual_machine" "A8_v2" {
+      + admin_username                  = "secret_admin"
+      + allow_extension_operations      = true
+      + computer_name                   = (known after apply)
+      + disable_password_authentication = true
+      + extensions_time_budget          = "PT1H30M"
+      + id                              = (known after apply)
+      + location                        = "ukwest"
+      + max_bid_price                   = -1
+      + name                            = "Standard_A8_v2"
+      + network_interface_ids           = [
+          + "/subscriptions/895ffbb1-42ee-4ba8-a702-028f769f07bc/resourceGroups/rg_A8_v2_name/providers/Microsoft.Network/networkInterfaces/ni_A8_v2_name",
+        ]
+      + patch_assessment_mode           = "ImageDefault"
+      + patch_mode                      = "ImageDefault"
+      + platform_fault_domain           = -1
+      + priority                        = "Regular"
+      + private_ip_address              = (known after apply)
+      + private_ip_addresses            = (known after apply)
+      + provision_vm_agent              = true
+      + public_ip_address               = (known after apply)
+      + public_ip_addresses             = (known after apply)
+      + resource_group_name             = "rg_A8_v2_name"
+      + size                            = "Standard_A8_v2"
+      + virtual_machine_id              = (known after apply)
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + name                      = (known after apply)
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + source_image_reference {
+          + offer     = "UbuntuServer"
+          + publisher = "Canonical"
+          + sku       = "18.04-LTS"
+          + version   = "latest"
+        }
+
+      + termination_notification {
+          + enabled = (known after apply)
+          + timeout = (known after apply)
+        }
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.

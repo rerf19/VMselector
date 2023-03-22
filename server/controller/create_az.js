@@ -10,19 +10,72 @@ exports.create = async (req,res) => {
     //get all the vm information
     axios.get('http://localhost:3000/api/az1', { params : { id : req.query.id }})
     .then(function(response){
-        
-        //create the VM resource 
-        tfg.resource('azurerm_virtual_machine', 'example-vm', {
-            name: response.data.name,
-            location: response.data.locations,
-            vm_size: response.data.size,
-            storage_image_reference: {
-              publisher: 'Canonical',
-              offer: 'UbuntuServer',
-              sku: '18.04-LTS',
-              version: 'latest'
-            },
 
+        const location = response.data.locations
+
+        //necessary resource group
+        const rg = tfg.resource('azurerm_resource_group','rg_' + response.data.size,{
+            name: 'rg_' + response.data.size + '_name',
+            location: location[0].toLowerCase(),
+        });
+
+        //   
+        // resource "azurerm_network_interface" "example" {
+        //   name                = "example-nic"
+        //   location            = azurerm_resource_group.example.location
+        //   resource_group_name = azurerm_resource_group.example.name
+        
+        //   ip_configuration {
+        //     name                          = "internal"
+        //     subnet_id                     = azurerm_subnet.example.id
+        //     private_ip_address_allocation = "Dynamic"
+        //   }
+        // }
+        const vir_net = tfg.resource('azurerm_virtual_network','vir_'+ response.data.size, {
+            name: 'vir_'+ response.data.size + '_name',
+            resource_group_name: 'rg_' + response.data.size + '_name',
+            location: location[0].toLowerCase(),
+            address_space: ["10.0.0.0/16"]
+        });
+
+        const sub_net = tfg.resource('azurerm_subnet','sb_' + response.data.size,{
+            name: 'sb_' + response.data.size + '_name',
+            resource_group_name: 'rg_' + response.data.size + '_name',
+            virtual_network_name: 'vir_'+ response.data.size + '_name',
+            address_prefixes: ["10.0.3.0/24"]
+        })
+
+        const net_inter = tfg.resource('azurerm_network_interface','ni_' + response.data.size,{
+            name: 'ni_' + response.data.size + '_name',
+            location: location[0].toLowerCase(),
+            resource_group_name: 'rg_' + response.data.size + '_name',
+            ip_configuration: {
+                name: "internal",
+                subnet_id: sub_net.id,
+                private_ip_address_allocation: "Dynamic"
+            }
+        });
+
+        //create the VM resource 
+        tfg.resource('azurerm_linux_virtual_machine', response.data.size, {
+            name: 'virtiualMachine',
+            location: location[0].toLowerCase(),
+            size: response.data.name,
+            resource_group_name: 'rg_' + response.data.size + '_name',
+            network_interface_ids: [net_inter.id],
+            disable_password_authentication: false,
+            admin_username: 'secret_admin',
+            admin_password: 'secret_password@123',
+            os_disk: {
+                caching: "ReadWrite",
+                storage_account_type: "Standard_LRS"
+            },
+            source_image_reference: {
+                publisher: 'Canonical',
+                offer: 'UbuntuServer',
+                sku: '18.04-LTS',
+                version: 'latest'
+            },
         });
 
         //generate the terraform code
@@ -36,32 +89,15 @@ exports.create = async (req,res) => {
 
         
         //execute 'terraform init' to download the necessary files
-        exec("terraform init",{ cwd: "./tf/Azure" }, (error, stdout, stderr) => {
+        exec("terraform init && terraform.tf",{ cwd: "./tf/Azure" }, (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
               return;
             }
-          
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
         });
-
-        //execute 'terraform plan' for the user be able to make sure everything is right
-        exec("terraform plan",{ cwd: "./tf/Azure" }, (error, stdout, stderr) => {
-            if (error) {
-              console.error(`exec error: ${error}`);
-              return;
-            }
-          
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
-        });
-
-        //update the user that the command have been apllied
-        console.log("WAIT FOR THE 'Terraform Apply' ...");
 
         //redirect to the AWS Search page
-        res.redirect('/azure');
+        res.redirect('/executeAZ');
     })
 }
 
