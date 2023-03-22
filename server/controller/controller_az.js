@@ -17,7 +17,6 @@ exports.find = async (req,res) => {
     const _netInter = req.query.netInter 
     allProvider = req.query.providers || 0
 
-    console.log(req.query)
     //QUERIES
     //instances
     const query = {
@@ -81,8 +80,6 @@ exports.find = async (req,res) => {
             res.status(500).send({ message : err.message || "Error occurred while retrieving instances information" });
         });
     }
-
-    //console.log(instances);
     
     //find region
     regions = await azIdb.distinct('locationInfo.location', {'resourceType': 'virtualMachines'}).catch(err => {res.status(500).send({ message : err.message || "Error occurred while retriving region information" }) });

@@ -38,34 +38,40 @@ exports.create = async (req,res) => {
             format: true
         });
 
-        
-
         //execute 'terraform init' to download the necessary files
-        exec("terraform init",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+        exec("terraform init && terraform.tf",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
             if (error) {
               console.error(`exec error: ${error}`);
               return;
             }
-          
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
         });
-
-        //execute 'terraform plan' for the user be able to make sure everything is right
-        exec("terraform plan",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
-            if (error) {
-              console.error(`exec error: ${error}`);
-              return;
-            }
-          
-            console.log(`stdout: ${stdout}`);
-            console.error(`stderr: ${stderr}`);
-        });
-
-        //update the user that the command have been apllied
-        console.log("WAIT FOR THE 'Terraform Apply' ...");
-
+        
         //redirect to the AWS Search page
-        res.redirect('/aws');
+        res.redirect('/executeAWS');
     })
+}
+//executes and show the terraform plan
+exports.plan = async (req,res) => {
+
+    exec("terraform plan -no-color > tfplan.txt && tfplan.txt",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          return;
+        }
+    });
+
+    res.redirect('/executeAWS')
+}
+
+//executes the terraform apply
+exports.apply = async (req,res) => {
+
+    exec("terraform apply -auto-approve",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+        if (error) {
+          console.error(`exec error: ${error}`);
+          return;
+        }
+    });
+
+    res.redirect('/aws')
 }

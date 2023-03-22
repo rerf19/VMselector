@@ -64,3 +64,29 @@ exports.create = async (req,res) => {
         res.redirect('/azure');
     })
 }
+
+//executes and show the terraform plan
+exports.plan = async (req,res) => {
+
+  exec("terraform plan -no-color > tfplan.txt && tfplan.txt",{ cwd: "./tf/Azure" }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+  });
+
+  res.redirect('/executeAZ')
+}
+
+//executes the terraform apply
+exports.apply = async (req,res) => {
+
+  exec("terraform apply -auto-approve",{ cwd: "./tf/Azure" }, (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+  });
+
+  res.redirect('/azure')
+}
