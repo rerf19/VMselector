@@ -4,6 +4,13 @@
 
 ### 🏠 [Homepage](https://github.com/rerf19/VMselector)
 
+## Prerequisites
+- npm >= 8.19
+- node >= 18.12.1
+- terraform = 1.3.6
+- azure cli >= 2.43 (with a account loged in)
+- aws cli >= 3.9.11 (with a account loged in)
+
 ## Install
 
 ```sh
@@ -16,7 +23,7 @@ npm install
 npm start
 ```
 
-On your favoutite broswer go to 'localhost:3000' to accest the tool.
+On your favourite broswer go to 'localhost:3000' to access the tool.
 
 ## Author
 
@@ -26,7 +33,7 @@ On your favoutite broswer go to 'localhost:3000' to accest the tool.
 
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/rerf19/VMselector/issues). You can also take a look at the [contributing guide](https://github.com/rerf19/VMselector/blob/master/CONTRIBUTING.md).
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/rerf19/VMselector/issues). 
 
 ## Show your support
 
