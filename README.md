@@ -1,14 +1,6 @@
 <h1 align="center">Welcome to VMselector 👋</h1>
-<p>
-  <a href="https://github.com/rerf19/VMselector#readme" target="_blank">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
-  </a>
-  <a href="https://github.com/rerf19/VMselector/graphs/commit-activity" target="_blank">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-</p>
 
-> Web Application that helps to select and create the best VM.
+> Virtual Machine (VM) selector web tool, that comes to life to put an end to the scarcity of an easy and user-friendly multiple cloud provider selector tool that benefits users and companies.
 
 ### 🏠 [Homepage](https://github.com/rerf19/VMselector)
 
@@ -23,6 +15,8 @@ npm install
 ```sh
 npm start
 ```
+
+On your favoutite broswer go to 'localhost:3000' to accest the tool.
 
 ## Author
 
