@@ -27,21 +27,12 @@
                 <div class="col-12">
                     <h3>Especific</h3>
                 </div>
-                <div class="col-6">
+                <div class="col-12">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
                         <option value="">All Options</option> 
                         <% for (const i in prCPU) { %>
                             <option value="<%= prCPU[i] %>"><%= prCPU[i] %></option>
-                        <% } %>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <label for="Ram" class="form-label">Ram(MB)</label>
-                     <select id="Ram" class="form-select" name="ram"> 
-                        <option value="">All Options</option>
-                        <% for (const i in prNetInt) { %>
-                            <option value="<%= prNetInt[i] %>"><%= prNetInt[i] %></option>
                         <% } %>
                     </select>
                 </div>

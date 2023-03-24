@@ -10,6 +10,8 @@
 - terraform = 1.3.6
 - azure cli >= 2.43 (with a account loged in)
 - aws cli >= 3.9.11 (with a account loged in)
+- mongodb (latest version)
+- recomended : mongoDBCompass tool
 
 ## Install
 
@@ -18,6 +20,8 @@ npm install
 ```
 
 ## Usage
+
+But before running the tool, it is necessary to create the database. For this, the folder data, it presents the two collections needed. Create the two collections on mongo DB and don't forget to change the information, if necessary, on the .env file.
 
 ```sh
 npm start
