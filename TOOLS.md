@@ -11,12 +11,6 @@ The purpose of this file is to provide a comprehensive overview of all the tools
 ## Package Manager
 * NPM
 
-## Project Mananer
-* 
-
-## Testing
-*
-
 ## Languages/Frameworks
 * JavaScript
 * EJS
