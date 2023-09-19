@@ -10,11 +10,11 @@
 #top h1{ /* h1 within the #top*/
     font-size: 90px;
     text-align: left;
-    color: var(--color3);
+    color: var(--color1);
 }
 
 #top h4{
-    color: var(--color3);
+    color: var(--color1);
 }
 
 /* ---------------------------------- */
@@ -28,7 +28,7 @@
 }
 
 #providers-title {
-    color: var(--color3);
+    color: var(--background);
 }
 
 #providers-title h1{
