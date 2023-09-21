@@ -15,24 +15,19 @@
     <%- include('include/_nav') %>
     <div class="container-fluid">
         <div id="forml" class="row" style="margin-top: 100px;">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <h1>Search - Azure</h1>
+            <div class="col-12" style="margin-top: 24px;">
+                <h1 style="color:#F6F4EB">Search - Azure</h1>
             </div>
-            <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
             <form method="get" action="/azure" class="row g-3">
-                <div class="col-12">
-                    <h3>General</h3>
-                </div>
                 <div class="col-6">
                     <label for="region" class="form-label">Region</label>
                     <select id="region" class="form-select" name="region">  
                         <% for(var i = 0; i < azR.length; i++) { %>
                             <option value="<%= azR[i] %>"><%= azR[i] %></option>
                         <% } %>
-                        <option value="">All Options</option> 
+                        <option value="">All Options</option>
                     </select>
                 </div>
                 <div class="col-6">
@@ -52,9 +47,6 @@
                     </select>
                 </div>
                 <!---->
-                <div class="col-12">
-                    <h3>Especific</h3>
-                </div>
                 <div class="col-6">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
@@ -66,7 +58,7 @@
                 </div>
                 <div class="col-6">
                     <label for="Ram" class="form-label">Ram(GB)</label>
-                     <select id="Ram" class="form-select" name="ram"> 
+                    <select id="Ram" class="form-select" name="ram"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < azRam.length; i++) { %>
                             <option value="<%= azRam[i] %>"><%= azRam[i] %></option>
@@ -75,7 +67,7 @@
                 </div>
                 <div class="col-4">
                     <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
-                     <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
+                    <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < azCpuArch.length; i++) { %>
                             <option value="<%= azCpuArch[i] %>"><%= azCpuArch[i] %></option>
@@ -84,7 +76,7 @@
                 </div>
                 <div class="col-4">
                     <label for="vCPUpCore" class="form-label">vCPUs Per Core</label>
-                     <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
+                    <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < azCore.length; i++) { %>
                             <option value="<%= azCore[i] %>"><%= azCore[i] %></option>
@@ -93,7 +85,7 @@
                 </div>
                 <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
-                     <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
+                    <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < azNetInt.length; i++) { %>
                             <option value="<%= azNetInt[i] %>"><%= azNetInt[i] %></option>
@@ -107,11 +99,9 @@
             </form>
         </div>
         <div id="list" class="row" style="margin-top: 40px;">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <h1>List</h1>
+            <div class="col-12" style="margin-top: 24px;">
+                <h1 style="color:#F6F4EB">List</h1>
             </div>
-            <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
             <table class="table text-center">

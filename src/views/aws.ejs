@@ -15,18 +15,13 @@
     <%- include('include/_nav') %>
     <div class="container-fluid">
         <div id="forml" class="row" style="margin-top: 100px;">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <h1>Search - AWS</h1>
+            <div class="col-12" style="margin-top: 24px;">
+                <h1 style="color:#F6F4EB">Search - AWS</h1>
             </div>
-            <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
             <form method="get" action="/aws" class="row g-3">
                 <!---->
-                <div class="col-12">
-                    <h3>Especific</h3>
-                </div>
                 <div class="col-6">
                     <label for="vCPUs" class="form-label">vCPUs</label>
                     <select id="vCPUs" class="form-select" name="vCPUs">
@@ -38,7 +33,7 @@
                 </div>
                 <div class="col-6">
                     <label for="Ram" class="form-label">Ram(MB)</label>
-                     <select id="Ram" class="form-select" name="ram"> 
+                    <select id="Ram" class="form-select" name="ram"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < awsRam.length; i++) { %>
                             <option value="<%= awsRam[i] %>"><%= awsRam[i] %></option>
@@ -47,7 +42,7 @@
                 </div>
                 <div class="col-4">
                     <label for="CpuArchitectureType" class="form-label">Cpu Architecture Type</label>
-                     <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
+                    <select id="CpuArchitectureType" class="form-select" name="cpuArch"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < awsCpuArch.length; i++) { %>
                             <option value="<%= awsCpuArch[i] %>"><%= awsCpuArch[i] %></option>
@@ -56,7 +51,7 @@
                 </div>
                 <div class="col-4">
                     <label for="vCPUpCore" class="form-label">Cores</label>
-                     <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
+                    <select id="vCPUpCore" class="form-select" name="cpuPerCore"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < awsCores.length; i++) { %>
                             <option value="<%= awsCores[i] %>"><%= awsCores[i] %></option>
@@ -65,7 +60,7 @@
                 </div>
                 <div class="col-4">
                     <label for="MaxNetworkInterfaces" class="form-label">Max Network Interfaces</label>
-                     <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
+                    <select id="MaxNetworkInterfaces" class="form-select" name="netInter"> 
                         <option value="">All Options</option>
                         <% for(var i = 0; i < awsNetInt.length; i++) { %>
                             <option value="<%= awsNetInt[i] %>"><%= awsNetInt[i] %></option>
@@ -79,11 +74,9 @@
             </form>
         </div>
         <div id="list" class="row" style="margin-top: 40px;">
-            <div class="col-1"></div>
-            <div class="col-10">
-                <h1>List</h1>
+            <div class="col-12" style="margin-top: 24px;">
+                <h1 style="color:#F6F4EB">List</h1>
             </div>
-            <div class="col-1"></div>
             <div class="col-12"></div>
             <!---->
             <table class="table text-center">
