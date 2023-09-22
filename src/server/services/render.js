@@ -1,5 +1,8 @@
 //Libraries required for this document
-const axios = require('axios'); //extract the necessary information from links
+const axios_call = require('axios'); //extract the necessary information from links
+const axios = axios_call.create({
+    baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:3000",
+});
 
 //Render the home page
 exports.homeRoute = (req,res) => {
@@ -9,7 +12,7 @@ exports.homeRoute = (req,res) => {
 //Render the Azure Search Page
 exports.azure = async (req,res) => {
     //make a request to /api/azureI_DB
-    axios.get('http://localhost:3000/api/az', {
+    axios.get('/api/az', {
         //send all the params to the back-end
         params:
         {
@@ -42,7 +45,7 @@ exports.azure = async (req,res) => {
 //Render the AWS Search Page
 exports.aws = async (req,res) => {
 
-    axios.get('http://localhost:3000/api/aws',{
+    axios.get('/api/aws',{
         params:
         {
             //send all the params to the back-end
@@ -68,7 +71,7 @@ exports.aws = async (req,res) => {
 //render the all providers
 exports.providers = async (req,res) => {
     const [az, aws] = await Promise.all([
-        axios.get(`http://localhost:3000/api/az`,{
+        axios.get(`/api/az`,{
             //send all the params to the back-end
             params:
             {
@@ -90,7 +93,7 @@ exports.providers = async (req,res) => {
             azCore = response.data.core.Core,
             azNetInt = response.data.netInt.NetInt
         }),
-        axios.get(`http://localhost:3000/api/aws`,{
+        axios.get(`/api/aws`,{
             //send all the params to the back-end
             params:
             {
@@ -131,7 +134,7 @@ exports.providers = async (req,res) => {
 exports.generate_az = async (req,res) => {
 
     //request the information from the especific link
-    axios.get('http://localhost:3000/api/az1', { params : { id : req.query.id }})
+    axios.get('/api/az1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAZ', {
             //send all the infomatoin to ejs
@@ -146,7 +149,7 @@ exports.generate_az = async (req,res) => {
 exports.generate_aws = async (req,res) => {
 
     //request the information from the especific link
-    axios.get('http://localhost:3000/api/aws1', { params : { id : req.query.id }})
+    axios.get('/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAWS', {
             //send all the infomatoin to ejs
@@ -157,10 +160,6 @@ exports.generate_aws = async (req,res) => {
     
 }
 
-exports.execute_az = async (req,res) => {
-    res.render('executeAZ')
-}
-
-exports.execute_aws = async (req,res) => {
-    res.render('executeAWS')
+exports.code = async (req,res) => {
+    res.render('code')
 }
