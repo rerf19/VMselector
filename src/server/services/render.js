@@ -1,5 +1,8 @@
 //Libraries required for this document
-const axios = require('axios'); //extract the necessary information from links
+const axios_call = require('axios'); //extract the necessary information from links
+const axios = axios_call.create({
+    baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:3000",
+});
 
 //Render the home page
 exports.homeRoute = (req,res) => {
@@ -42,7 +45,7 @@ exports.azure = async (req,res) => {
 //Render the AWS Search Page
 exports.aws = async (req,res) => {
 
-    axios.get('http://localhost:3000/api/aws',{
+    axios.get('/api/aws',{
         params:
         {
             //send all the params to the back-end

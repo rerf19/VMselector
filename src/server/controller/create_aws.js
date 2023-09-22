@@ -32,46 +32,46 @@ exports.create = async (req,res) => {
         //generate the terraform code
         tfg.generate();
 
-        //create/edit terraform document with the update information
-        tfg.write({
-            dir: 'tf/AWS',
-            format: true
-        });
+        // //create/edit terraform document with the update information
+        // tfg.write({
+        //     dir: 'tf/AWS',
+        //     format: true
+        // });
 
-        //execute 'terraform init' to download the necessary files
-        exec("terraform init && terraform.tf",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
-            if (error) {
-              console.error(`exec error: ${error}`);
-              return;
-            }
-        });
+        // //execute 'terraform init' to download the necessary files
+        // exec("terraform init && terraform.tf",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+        //     if (error) {
+        //       console.error(`exec error: ${error}`);
+        //       return;
+        //     }
+        // });
         
         //redirect to the AWS Search page
         res.redirect('/executeAWS');
     })
 }
-//executes and show the terraform plan
-exports.plan = async (req,res) => {
+// //executes and show the terraform plan
+// exports.plan = async (req,res) => {
 
-    exec("terraform plan -no-color > tfplan.txt && tfplan.txt",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          return;
-        }
-    });
+//     exec("terraform plan -no-color > tfplan.txt && tfplan.txt",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+//         if (error) {
+//           console.error(`exec error: ${error}`);
+//           return;
+//         }
+//     });
 
-    res.redirect('/executeAWS')
-}
+//     res.redirect('/executeAWS')
+// }
 
-//executes the terraform apply
-exports.apply = async (req,res) => {
+// //executes the terraform apply
+// exports.apply = async (req,res) => {
 
-    exec("terraform apply -auto-approve",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
-        if (error) {
-          console.error(`exec error: ${error}`);
-          return;
-        }
-    });
+//     exec("terraform apply -auto-approve",{ cwd: "./tf/AWS" }, (error, stdout, stderr) => {
+//         if (error) {
+//           console.error(`exec error: ${error}`);
+//           return;
+//         }
+//     });
 
-    res.redirect('/aws')
-}
+//     res.redirect('/aws')
+// }
