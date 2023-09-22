@@ -12,7 +12,7 @@ exports.homeRoute = (req,res) => {
 //Render the Azure Search Page
 exports.azure = async (req,res) => {
     //make a request to /api/azureI_DB
-    axios.get('http://localhost:3000/api/az', {
+    axios.get('/api/az', {
         //send all the params to the back-end
         params:
         {
@@ -71,7 +71,7 @@ exports.aws = async (req,res) => {
 //render the all providers
 exports.providers = async (req,res) => {
     const [az, aws] = await Promise.all([
-        axios.get(`http://localhost:3000/api/az`,{
+        axios.get(`/api/az`,{
             //send all the params to the back-end
             params:
             {
@@ -93,7 +93,7 @@ exports.providers = async (req,res) => {
             azCore = response.data.core.Core,
             azNetInt = response.data.netInt.NetInt
         }),
-        axios.get(`http://localhost:3000/api/aws`,{
+        axios.get(`/api/aws`,{
             //send all the params to the back-end
             params:
             {
@@ -134,7 +134,7 @@ exports.providers = async (req,res) => {
 exports.generate_az = async (req,res) => {
 
     //request the information from the especific link
-    axios.get('http://localhost:3000/api/az1', { params : { id : req.query.id }})
+    axios.get('/api/az1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAZ', {
             //send all the infomatoin to ejs
@@ -149,7 +149,7 @@ exports.generate_az = async (req,res) => {
 exports.generate_aws = async (req,res) => {
 
     //request the information from the especific link
-    axios.get('http://localhost:3000/api/aws1', { params : { id : req.query.id }})
+    axios.get('/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
         res.render('generateAWS', {
             //send all the infomatoin to ejs

@@ -28,13 +28,6 @@ route.get('/create-aws', create_aws.create);
 route.get('/executeAZ',render.execute_az);
 route.get('/executeAWS',render.execute_aws);
 
-    //plan an apply
-route.get('/plan_az', create_az.plan);
-route.get('/apply_az', create_az.apply);
-route.get('/plan_aws', create_aws.plan);
-route.get('/apply_aws', create_aws.apply);
-
-
 
 //API
 //Azure API
