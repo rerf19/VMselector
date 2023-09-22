@@ -24,9 +24,10 @@ route.get('/generate-aws', render.generate_aws);
 route.get('/create-az', create_az.create);
 route.get('/create-aws', create_aws.create);
 
-    //execute page
-route.get('/executeAZ',render.execute_az);
-route.get('/executeAWS',render.execute_aws);
+    //code page
+route.get('/code', render.code);
+
+
 
 
 //API

@@ -160,10 +160,6 @@ exports.generate_aws = async (req,res) => {
     
 }
 
-exports.execute_az = async (req,res) => {
-    res.render('executeAZ')
-}
-
-exports.execute_aws = async (req,res) => {
-    res.render('executeAWS')
+exports.code = async (req,res) => {
+    res.render('code')
 }

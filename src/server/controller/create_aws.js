@@ -1,5 +1,8 @@
 //Libraries required for this document
-const axios = require('axios'); //extract the necessary information from links
+const axios_call = require('axios'); //extract the necessary information from links
+const axios = axios_call.create({
+    baseURL: process.env.REACT_APP_BASE_URL || "http://localhost:3000",
+});
 const { exec } = require("child_process"); //to able to execute cmd commands
 const { TerraformGenerator, Resource, map, fn } = require('terraform-generator'); //tranform and generate terraform code
 
@@ -17,7 +20,7 @@ exports.create = async (req,res) => {
     //get all the vm information
     axios.get('/api/aws1', { params : { id : req.query.id }})
     .then(function(response){
-
+        
         //variables
         const instanceName = 'instance';
         const instanceType = response.data.InstanceType;
@@ -30,10 +33,9 @@ exports.create = async (req,res) => {
         });
 
         //generate the terraform code
-        tfg.generate();
+        code = tfg.generate()
 
-        
         //redirect to the AWS Search page
-        res.redirect('/executeAWS');
+        res.redirect('/code?info=${code}');
     })
 }
