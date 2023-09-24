@@ -10,11 +10,11 @@
 #top h1{ /* h1 within the #top*/
     font-size: 90px;
     text-align: left;
-    color: var(--color3);
+    color: var(--color1);
 }
 
 #top h4{
-    color: var(--color3);
+    color: var(--color1);
 }
 
 /* ---------------------------------- */
@@ -23,12 +23,14 @@
 
 #providers{
     background-color: var(--color);
-    border-radius: 60px;
+    border-radius: 30px;
     width: 90vw;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
 }
 
 #providers-title {
-    color: var(--color3);
+    color: var(--background);
 }
 
 #providers-title h1{
@@ -44,5 +46,11 @@
 
 .card-title{
     text-align: center;
+}
+
+.card-img-top{
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
 }
 

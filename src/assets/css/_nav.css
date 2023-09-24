@@ -1,37 +1,41 @@
 nav{
-    background-color: var(--color2);
+    background-color: var(--color1);
 }
 
 .offcanvas{
-    background-color: var(--color2);
+    background-color: var(--color1);
 }
 
 .navbar-brand{
-    color: var(--color-2);
-}
-
-.nav-link{
-    color: var(--color-2);
+    color: var(--background);
 }
 
 .navbar-brand:hover{
-    color: var(--color1);
+    color: var(--color-1);
 }
 
-.nav-link:hover{
-    color: var(--color1);
+.nav-link{
+    color: var(--color-1);
 }
+.nav-link:hover{
+    color: var(--background);
+}
+
 
 .dropdown-menu {
-    background-color: var(--color2);
-    color: var(--color-2);
+    background-color: var(--color1);
+    color: var(--color-1);
 }
 
 .dropdown-item{
-    color: var(--color-2);
+    color: var(--color-1);
 }
 
 .dropdown-item:hover{
-    color: var(--color2);
+    color: var(--color1);
+}
+
+.offcanvas-title {
+    color: var(--background);
 }
 

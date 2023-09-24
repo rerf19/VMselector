@@ -13,17 +13,12 @@
 </head>
 <body>
     <%- include('include/_nav') %>
-    <div class="container-fluid">
-        <div id="forml" class="row" style="margin-top: 100px;">
-            <h1>Execute - Azure</h1> <br>
-            <div class="row">
-                <div class="col">
-                    <a href="/plan_az"><button type="button" class="btn btn-primary btn-lg" >Show the Plan</button></a>
-                </div>
-                <div class="col">
-                    <a href="/apply_az"><button type="button" class="btn btn-primary btn-lg" >Apply Terraform</button></a>
-                </div>
-            </div>
+    <div class="container-fluid" id="generate_div">
+        <div id="froml" class="row">
+            <h1>Terraform Code</h1>
+            <textarea name="" id="" cols="30" rows="10">
+                <%= code.tf %>
+            </textarea>
         </div>
     </div>
     <%- include('include/_footer') %>

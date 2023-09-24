@@ -13,12 +13,14 @@
 </head>
 <body>
     <%- include('include/_nav') %>
-    <div class="container-fluid">
-        <div id="forml" class="row" style="margin-top: 100px;">
+    <div class="container-fluid" id="generate_div">
+        <div id="forml" class="row">
             <h1>Generate - Azure</h1> <br>
             <h3>Virtual Machine</h3> <br>
             <h4>Type: <%= vm.size %></h4> <br>
-            <a href="/create-az?id=<%= vm._id%>"><button type="button" class="btn btn-primary btn-lg" >Create</button></a>
+            <h3>Addicional Options</h3>
+            <h4>Currently Building</h4>
+            <a href="/create-az?id=<%= vm._id%>"><button type="button" class="btn btn-primary btn-lg" >Generate Terraform Code</button></a>
         </div>
     </div>
     <%- include('include/_footer') %>
